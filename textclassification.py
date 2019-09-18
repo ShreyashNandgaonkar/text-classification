@@ -31,6 +31,7 @@ import numpy as np
 twenty_test = fetch_20newsgroups(subset='test', shuffle=True)
 predicted = text_clf.predict(twenty_test.data)
 np.mean(predicted == twenty_test.target)
+misclassified = [y for x, y in zip(twenty_test.target==predicted, twenty_test.data) if x==False]
 from sklearn import metrics
 print(metrics.classification_report(twenty_test.target,predicted,target_names=twenty_test.target_names))
 # Training Support Vector Machines - SVM and calculating its performance
